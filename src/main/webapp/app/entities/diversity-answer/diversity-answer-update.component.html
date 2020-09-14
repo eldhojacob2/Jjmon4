@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-diversity-answer-heading">Create or edit a Diversity Answer</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_answerSeqNo">Answer Seq No</label>
+                    <input type="number" class="form-control" name="answerSeqNo" id="field_answerSeqNo"
+                           formControlName="answerSeqNo"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_answerType">Answer Type</label>
+                    <select class="form-control" name="answerType" formControlName="answerType" id="field_answerType">
+                        <option value="RADIO">RADIO</option>
+                        <option value="CHECKBOX">CHECKBOX</option>
+                        <option value="TEXT">TEXT</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_answerCustomLabel">Answer Custom Label</label>
+                    <input type="text" class="form-control" name="answerCustomLabel" id="field_answerCustomLabel"
+                           formControlName="answerCustomLabel"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_answerDesc">Answer Desc</label>
+                    <input type="text" class="form-control" name="answerDesc" id="field_answerDesc"
+                           formControlName="answerDesc"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_question">Question</label>
+                    <select class="form-control" id="field_question" name="question" formControlName="question">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="diversityQuestionOption.id === editForm.get('question')!.value?.id ? editForm.get('question')!.value : diversityQuestionOption" *ngFor="let diversityQuestionOption of diversityquestions; trackBy: trackById">{{ diversityQuestionOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_questCategory">Quest Category</label>
+                    <select class="form-control" id="field_questCategory" name="questCategory" formControlName="questCategory">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="diversityQuestCategoryOption.id === editForm.get('questCategory')!.value?.id ? editForm.get('questCategory')!.value : diversityQuestCategoryOption" *ngFor="let diversityQuestCategoryOption of diversityquestcategories; trackBy: trackById">{{ diversityQuestCategoryOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

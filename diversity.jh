@@ -1,0 +1,73 @@
+entity DiversityTheme {
+	themeSeqNo Integer,
+	themeName String
+}
+
+entity DiversityQuestion {
+	questionSeqNo Integer,
+	questionNo String,
+	questionDesc String
+}
+
+entity DiversityQuestCategory {
+	categorySeqNo Integer,
+	categoryNo String,
+	categoryDesc String
+}
+
+entity DiversityAnswer {
+	answerSeqNo Integer,
+	answerType AnswerInputType,
+    answerCustomLabel String,
+	answerDesc String
+}
+
+entity DiversitySurveyData {
+	customAnswer String
+}
+
+entity DiversityEmployee {
+	employeeId String,
+    firstName String,
+	lastName String,
+	email String
+}
+
+entity Roles {
+   roleType EmployeeRoleType
+}
+
+relationship ManyToOne {
+	DiversityQuestion{theme} to DiversityTheme
+    DiversityQuestCategory{question} to DiversityQuestion
+    DiversityAnswer{question} to DiversityQuestion
+	DiversityAnswer{questCategory} to DiversityQuestCategory
+    DiversityTheme{theme} to DiversitySurveyData
+    DiversityEmployee{employee} to DiversitySurveyData
+}
+
+relationship ManyToMany {
+	Roles{employee} to DiversityEmployee{role}
+}
+//relationship OneyToMany {
+   // DiversitySurveyData to DiversityQuestion    
+   /// DiversitySurveyData to DiversityQuestCategory
+    //DiversitySurveyData to DiversityAnswer
+//}
+enum AnswerInputType {
+    RADIO, CHECKBOX, TEXT
+}
+
+enum EmployeeRoleType {
+    USER, ADMIN, DASHBOARD
+}
+
+// Set pagination options
+//paginate DiversityQuestion, DiversityAnswers with infinite-scroll
+//paginate DiversityQuestion, DiversityAnswer with pagination
+
+// Use Data Transfert Objects (DTO)
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl

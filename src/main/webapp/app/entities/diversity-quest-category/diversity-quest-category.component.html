@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span>Diversity Quest Categories</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-diversity-quest-category" [routerLink]="['/diversity-quest-category/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Diversity Quest Category
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="diversityQuestCategories?.length === 0">
+        <span>No diversityQuestCategories found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="diversityQuestCategories && diversityQuestCategories.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Category Seq No</span></th>
+                    <th scope="col" ><span>Category No</span></th>
+                    <th scope="col" ><span>Category Desc</span></th>
+                    <th scope="col" ><span>Question</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let diversityQuestCategory of diversityQuestCategories ;trackBy: trackId">
+                    <td><a [routerLink]="['/diversity-quest-category', diversityQuestCategory.id, 'view']">{{ diversityQuestCategory.id }}</a></td>
+                    <td>{{ diversityQuestCategory.categorySeqNo }}</td>
+                    <td>{{ diversityQuestCategory.categoryNo }}</td>
+                    <td>{{ diversityQuestCategory.categoryDesc }}</td>
+                    <td>
+                        <div *ngIf="diversityQuestCategory.question">
+                            <a [routerLink]="['/diversity-question', diversityQuestCategory.question?.id, 'view']" >{{ diversityQuestCategory.question?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/diversity-quest-category', diversityQuestCategory.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/diversity-quest-category', diversityQuestCategory.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(diversityQuestCategory)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

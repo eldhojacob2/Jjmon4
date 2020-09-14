@@ -1,0 +1,33 @@
+{
+  "name": "DiversityTheme",
+  "fields": [
+    {
+      "fieldName": "themeSeqNo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "themeName",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "diversitySurveyData",
+      "otherEntityRelationshipName": "diversityTheme",
+      "relationshipName": "theme",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200914160805",
+  "entityTableName": "diversity_theme",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

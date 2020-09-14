@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity DiversityTheme.
+    -->
+    <changeSet id="20200914160805-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="theme_id"
+                                 baseTableName="diversity_theme"
+                                 constraintName="fk_diversity_theme_theme_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="diversity_survey_data"/>
+
+    </changeSet>
+</databaseChangeLog>

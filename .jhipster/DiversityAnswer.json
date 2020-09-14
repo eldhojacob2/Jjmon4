@@ -1,0 +1,49 @@
+{
+  "name": "DiversityAnswer",
+  "fields": [
+    {
+      "fieldName": "answerSeqNo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "answerType",
+      "fieldType": "AnswerInputType",
+      "fieldValues": "RADIO,CHECKBOX,TEXT"
+    },
+    {
+      "fieldName": "answerCustomLabel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "answerDesc",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "diversityQuestion",
+      "otherEntityRelationshipName": "diversityAnswer",
+      "relationshipName": "question",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "diversityQuestCategory",
+      "otherEntityRelationshipName": "diversityAnswer",
+      "relationshipName": "questCategory",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200914161105",
+  "entityTableName": "diversity_answer",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

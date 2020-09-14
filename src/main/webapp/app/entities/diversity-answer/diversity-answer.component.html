@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Diversity Answers</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-diversity-answer" [routerLink]="['/diversity-answer/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Diversity Answer
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="diversityAnswers?.length === 0">
+        <span>No diversityAnswers found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="diversityAnswers && diversityAnswers.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Answer Seq No</span></th>
+                    <th scope="col" ><span>Answer Type</span></th>
+                    <th scope="col" ><span>Answer Custom Label</span></th>
+                    <th scope="col" ><span>Answer Desc</span></th>
+                    <th scope="col" ><span>Question</span></th>
+                    <th scope="col" ><span>Quest Category</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let diversityAnswer of diversityAnswers ;trackBy: trackId">
+                    <td><a [routerLink]="['/diversity-answer', diversityAnswer.id, 'view']">{{ diversityAnswer.id }}</a></td>
+                    <td>{{ diversityAnswer.answerSeqNo }}</td>
+                    <td>{{ diversityAnswer.answerType }}</td>
+                    <td>{{ diversityAnswer.answerCustomLabel }}</td>
+                    <td>{{ diversityAnswer.answerDesc }}</td>
+                    <td>
+                        <div *ngIf="diversityAnswer.question">
+                            <a [routerLink]="['/diversity-question', diversityAnswer.question?.id, 'view']" >{{ diversityAnswer.question?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="diversityAnswer.questCategory">
+                            <a [routerLink]="['/diversity-quest-category', diversityAnswer.questCategory?.id, 'view']" >{{ diversityAnswer.questCategory?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/diversity-answer', diversityAnswer.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/diversity-answer', diversityAnswer.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(diversityAnswer)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
