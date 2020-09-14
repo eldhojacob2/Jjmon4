@@ -33,9 +33,9 @@
                     <td><a [routerLink]="['/roles', roles.id, 'view']">{{ roles.id }}</a></td>
                     <td>{{ roles.roleType }}</td>
                     <td>
-                        <span *ngFor="let employee of roles.employees; let last = last">
-                            <a class="form-control-static" [routerLink]="['/diversity-employee', employee?.id, 'view']">{{ employee.id }}</a>{{ last ? '' : ', ' }}
-                        </span>
+                        <div *ngIf="roles.employee">
+                            <a [routerLink]="['/diversity-employee', roles.employee?.id, 'view']" >{{ roles.employee?.id }}</a>
+                        </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">

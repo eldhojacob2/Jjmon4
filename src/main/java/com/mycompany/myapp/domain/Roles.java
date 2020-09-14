@@ -1,11 +1,10 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.mycompany.myapp.domain.enumeration.EmployeeRoleType;
 
@@ -26,11 +25,9 @@ public class Roles implements Serializable {
     @Column(name = "role_type")
     private EmployeeRoleType roleType;
 
-    @ManyToMany
-    @JoinTable(name = "roles_employee",
-               joinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"))
-    private Set<DiversityEmployee> employees = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = "roles", allowSetters = true)
+    private DiversityEmployee employee;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -54,29 +51,17 @@ public class Roles implements Serializable {
         this.roleType = roleType;
     }
 
-    public Set<DiversityEmployee> getEmployees() {
-        return employees;
+    public DiversityEmployee getEmployee() {
+        return employee;
     }
 
-    public Roles employees(Set<DiversityEmployee> diversityEmployees) {
-        this.employees = diversityEmployees;
+    public Roles employee(DiversityEmployee diversityEmployee) {
+        this.employee = diversityEmployee;
         return this;
     }
 
-    public Roles addEmployee(DiversityEmployee diversityEmployee) {
-        this.employees.add(diversityEmployee);
-        diversityEmployee.getRoles().add(this);
-        return this;
-    }
-
-    public Roles removeEmployee(DiversityEmployee diversityEmployee) {
-        this.employees.remove(diversityEmployee);
-        diversityEmployee.getRoles().remove(this);
-        return this;
-    }
-
-    public void setEmployees(Set<DiversityEmployee> diversityEmployees) {
-        this.employees = diversityEmployees;
+    public void setEmployee(DiversityEmployee diversityEmployee) {
+        this.employee = diversityEmployee;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

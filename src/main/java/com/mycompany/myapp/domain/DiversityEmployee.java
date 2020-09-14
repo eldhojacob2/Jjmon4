@@ -1,13 +1,10 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A DiversityEmployee.
@@ -37,10 +34,6 @@ public class DiversityEmployee implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "diversityEmployees", allowSetters = true)
     private DiversitySurveyData employee;
-
-    @ManyToMany(mappedBy = "employees")
-    @JsonIgnore
-    private Set<Roles> roles = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -114,31 +107,6 @@ public class DiversityEmployee implements Serializable {
 
     public void setEmployee(DiversitySurveyData diversitySurveyData) {
         this.employee = diversitySurveyData;
-    }
-
-    public Set<Roles> getRoles() {
-        return roles;
-    }
-
-    public DiversityEmployee roles(Set<Roles> roles) {
-        this.roles = roles;
-        return this;
-    }
-
-    public DiversityEmployee addRole(Roles roles) {
-        this.roles.add(roles);
-        roles.getEmployees().add(this);
-        return this;
-    }
-
-    public DiversityEmployee removeRole(Roles roles) {
-        this.roles.remove(roles);
-        roles.getEmployees().remove(this);
-        return this;
-    }
-
-    public void setRoles(Set<Roles> roles) {
-        this.roles = roles;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
