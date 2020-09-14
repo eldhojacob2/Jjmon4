@@ -44,10 +44,7 @@ relationship ManyToOne {
 	DiversityAnswer{questCategory} to DiversityQuestCategory
     DiversityTheme{theme} to DiversitySurveyData
     DiversityEmployee{employee} to DiversitySurveyData
-}
-
-relationship ManyToMany {
-	Roles{employee} to DiversityEmployee{role}
+    Roles{employee} to DiversityEmployee
 }
 //relationship OneyToMany {
    // DiversitySurveyData to DiversityQuestion    
