@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span>Diversity Themes</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-diversity-theme" [routerLink]="['/diversity-theme/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Diversity Theme
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="diversityThemes?.length === 0">
+        <span>No diversityThemes found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="diversityThemes && diversityThemes.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Theme Seq No</span></th>
+                    <th scope="col" ><span>Theme Name</span></th>
+                    <th scope="col" ><span>Theme</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let diversityTheme of diversityThemes ;trackBy: trackId">
+                    <td><a [routerLink]="['/diversity-theme', diversityTheme.id, 'view']">{{ diversityTheme.id }}</a></td>
+                    <td>{{ diversityTheme.themeSeqNo }}</td>
+                    <td>{{ diversityTheme.themeName }}</td>
+                    <td>
+                        <div *ngIf="diversityTheme.theme">
+                            <a [routerLink]="['/diversity-survey-data', diversityTheme.theme?.id, 'view']" >{{ diversityTheme.theme?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/diversity-theme', diversityTheme.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/diversity-theme', diversityTheme.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(diversityTheme)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

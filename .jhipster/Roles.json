@@ -1,0 +1,31 @@
+{
+  "name": "Roles",
+  "fields": [
+    {
+      "fieldName": "roleType",
+      "fieldType": "EmployeeRoleType",
+      "fieldValues": "USER,ADMIN,DASHBOARD"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "diversityEmployee",
+      "otherEntityRelationshipName": "role",
+      "relationshipName": "employee",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20200914161405",
+  "entityTableName": "roles",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

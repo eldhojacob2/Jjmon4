@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="roles">
+            <h2><span>Roles</span> {{ roles.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Role Type</span></dt>
+                <dd>
+                    <span>{{ roles.roleType }}</span>
+                </dd>
+                <dt><span>Employee</span></dt>
+                <dd>
+                    <span *ngFor="let employee of roles.employees; let last = last">
+                        <a [routerLink]="['/diversity-employee', employee?.id, 'view']">{{ employee.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/roles', roles.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

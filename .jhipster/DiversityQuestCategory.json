@@ -1,0 +1,37 @@
+{
+  "name": "DiversityQuestCategory",
+  "fields": [
+    {
+      "fieldName": "categorySeqNo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "categoryNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "categoryDesc",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "diversityQuestion",
+      "otherEntityRelationshipName": "diversityQuestCategory",
+      "relationshipName": "question",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200914161005",
+  "entityTableName": "diversity_quest_category",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
