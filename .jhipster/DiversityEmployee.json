@@ -25,14 +25,6 @@
       "otherEntityRelationshipName": "diversityEmployee",
       "relationshipName": "employee",
       "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "many-to-many",
-      "otherEntityName": "roles",
-      "otherEntityRelationshipName": "employee",
-      "relationshipName": "role",
-      "otherEntityField": "id",
-      "ownerSide": false
     }
   ],
   "changelogDate": "20200914161305",

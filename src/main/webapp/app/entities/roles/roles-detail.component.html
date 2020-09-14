@@ -14,9 +14,9 @@
                 </dd>
                 <dt><span>Employee</span></dt>
                 <dd>
-                    <span *ngFor="let employee of roles.employees; let last = last">
-                        <a [routerLink]="['/diversity-employee', employee?.id, 'view']">{{ employee.id }}</a>{{ last ? '' : ', ' }}
-                    </span>
+                    <div *ngIf="roles.employee">
+                        <a [routerLink]="['/diversity-employee', roles.employee?.id, 'view']">{{ roles.employee?.id }}</a>
+                    </div>
                 </dd>
             </dl>
 

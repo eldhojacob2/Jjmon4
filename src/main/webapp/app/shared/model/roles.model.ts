@@ -4,9 +4,9 @@ import { EmployeeRoleType } from 'app/shared/model/enumerations/employee-role-ty
 export interface IRoles {
   id?: number;
   roleType?: EmployeeRoleType;
-  employees?: IDiversityEmployee[];
+  employee?: IDiversityEmployee;
 }
 
 export class Roles implements IRoles {
-  constructor(public id?: number, public roleType?: EmployeeRoleType, public employees?: IDiversityEmployee[]) {}
+  constructor(public id?: number, public roleType?: EmployeeRoleType, public employee?: IDiversityEmployee) {}
 }

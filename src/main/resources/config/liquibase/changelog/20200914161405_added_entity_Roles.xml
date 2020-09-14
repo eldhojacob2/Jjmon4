@@ -19,23 +19,15 @@
             <column name="role_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="employee_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
 
     <changeSet id="20200914161405-1-relations" author="jhipster">
 
-        <createTable tableName="roles_employee">
-            <column name="employee_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="roles_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="roles_id, employee_id" tableName="roles_employee"/>
-        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 

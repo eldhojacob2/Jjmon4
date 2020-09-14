@@ -82,13 +82,12 @@ public class RolesResource {
     /**
      * {@code GET  /roles} : get all the roles.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of roles in body.
      */
     @GetMapping("/roles")
-    public List<Roles> getAllRoles(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Roles> getAllRoles() {
         log.debug("REST request to get all Roles");
-        return rolesRepository.findAllWithEagerRelationships();
+        return rolesRepository.findAll();
     }
 
     /**
@@ -100,7 +99,7 @@ public class RolesResource {
     @GetMapping("/roles/{id}")
     public ResponseEntity<Roles> getRoles(@PathVariable Long id) {
         log.debug("REST request to get Roles : {}", id);
-        Optional<Roles> roles = rolesRepository.findOneWithEagerRelationships(id);
+        Optional<Roles> roles = rolesRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(roles);
     }
 

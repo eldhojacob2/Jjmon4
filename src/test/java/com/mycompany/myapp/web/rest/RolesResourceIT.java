@@ -6,25 +6,18 @@ import com.mycompany.myapp.repository.RolesRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -33,7 +26,6 @@ import com.mycompany.myapp.domain.enumeration.EmployeeRoleType;
  * Integration tests for the {@link RolesResource} REST controller.
  */
 @SpringBootTest(classes = JjApp4App.class)
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class RolesResourceIT {
@@ -43,9 +35,6 @@ public class RolesResourceIT {
 
     @Autowired
     private RolesRepository rolesRepository;
-
-    @Mock
-    private RolesRepository rolesRepositoryMock;
 
     @Autowired
     private EntityManager em;
@@ -134,26 +123,6 @@ public class RolesResourceIT {
             .andExpect(jsonPath("$.[*].roleType").value(hasItem(DEFAULT_ROLE_TYPE.toString())));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllRolesWithEagerRelationshipsIsEnabled() throws Exception {
-        when(rolesRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restRolesMockMvc.perform(get("/api/roles?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(rolesRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllRolesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(rolesRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restRolesMockMvc.perform(get("/api/roles?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(rolesRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getRoles() throws Exception {

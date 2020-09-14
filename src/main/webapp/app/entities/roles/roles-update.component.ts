@@ -21,7 +21,7 @@ export class RolesUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     roleType: [],
-    employees: [],
+    employee: [],
   });
 
   constructor(
@@ -45,7 +45,7 @@ export class RolesUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: roles.id,
       roleType: roles.roleType,
-      employees: roles.employees,
+      employee: roles.employee,
     });
   }
 
@@ -68,7 +68,7 @@ export class RolesUpdateComponent implements OnInit {
       ...new Roles(),
       id: this.editForm.get(['id'])!.value,
       roleType: this.editForm.get(['roleType'])!.value,
-      employees: this.editForm.get(['employees'])!.value,
+      employee: this.editForm.get(['employee'])!.value,
     };
   }
 
@@ -90,16 +90,5 @@ export class RolesUpdateComponent implements OnInit {
 
   trackById(index: number, item: IDiversityEmployee): any {
     return item.id;
-  }
-
-  getSelected(selectedVals: IDiversityEmployee[], option: IDiversityEmployee): IDiversityEmployee {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
   }
 }

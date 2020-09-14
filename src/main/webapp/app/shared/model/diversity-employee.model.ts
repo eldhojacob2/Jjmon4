@@ -1,5 +1,4 @@
 import { IDiversitySurveyData } from 'app/shared/model/diversity-survey-data.model';
-import { IRoles } from 'app/shared/model/roles.model';
 
 export interface IDiversityEmployee {
   id?: number;
@@ -8,7 +7,6 @@ export interface IDiversityEmployee {
   lastName?: string;
   email?: string;
   employee?: IDiversitySurveyData;
-  roles?: IRoles[];
 }
 
 export class DiversityEmployee implements IDiversityEmployee {
@@ -18,7 +16,6 @@ export class DiversityEmployee implements IDiversityEmployee {
     public firstName?: string,
     public lastName?: string,
     public email?: string,
-    public employee?: IDiversitySurveyData,
-    public roles?: IRoles[]
+    public employee?: IDiversitySurveyData
   ) {}
 }

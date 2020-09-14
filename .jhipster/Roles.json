@@ -9,12 +9,11 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-many",
+      "relationshipType": "many-to-one",
       "otherEntityName": "diversityEmployee",
-      "otherEntityRelationshipName": "role",
+      "otherEntityRelationshipName": "roles",
       "relationshipName": "employee",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20200914161405",
